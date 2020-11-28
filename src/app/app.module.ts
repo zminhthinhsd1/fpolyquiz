@@ -4,14 +4,16 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SubjectsComponent } from './subjects/subjects.component';
+import { SubjectsComponent } from "./subjects/subjects.component";
 import { ExamComponent } from './exam/exam.component';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ExamComponent,
     SubjectsComponent,
-    ExamComponent
+    ResultComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,7 @@ import { ExamComponent } from './exam/exam.component';
     AppRoutingModule,
     RouterModule.forRoot([
       {path: '', component: SubjectsComponent},
+      {path: 'result', component: ResultComponent},
       {path: 'subjects/:idSubject', component: ExamComponent},
 
     ])

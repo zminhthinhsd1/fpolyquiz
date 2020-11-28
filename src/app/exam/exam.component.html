@@ -1,32 +1,41 @@
-<div class="container ">
-    <h1 class="text-center mt-5 mb-2 display-2">Môn HTML (Intermediate)</h1>
-    <h4 class="text-center my-4 font-weight-normal">Thời gian 15 phút, 20 câu </h4>
-    <div class="column p-4 border-1"
-      style="border-left:10px solid #F84E75; border-radius:20px; box-shadow:5px 5px 20px 1px #888888;">
-      <div class="panel panel-primary">
-        <div class="panel-heading ">
-          <span class="badge badge-warning p-2 mb-2">Mã đề: HTML0125</span>
-          <h3 class="panel-title bg-info text-white p-3 display-5 d-flex align-center">
-            <span class="badge badge-secondary mr-2">Câu{{index+1}}.{{currentQuestion.Text}}</span>
-          </h3>
-        </div>
-        <div class="panel-body my-2" >
-            <p></p>
-          <div class="radio"  *ngFor='let ans of currentQuestion.Answers'>
-            <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">{{ans.Text}}<span
-                style="font-size:22px" class="px-2 my-5"></span>
-            </label>
-          </div>
-  
-        </div>
-        <div class="panel-footer">
-          <a href="#" class="btn btn-light" role="button">Prev</a>
-          <a class="btn btn-primary" (click)="next()" role="button">Next</a>
-          <!-- <a href="#" class="btn btn-default disabled" role="button">Avanti</a> -->
-        </div>
+<div class="container " *ngIf="!showResult">
+  <h1 class="text-center mt-5 mb-2 display-2">Môn {{idMon}} {{userAns}} {{currentQuestion.AnswerId}} {{correctAns}}</h1>
+  <h4 class="text-center my-4 font-weight-normal">Thời gian 15 phút, 5 câu </h4>
+  <div class="column p-4 border-1"
+    style="border-left:10px solid #F84E75; border-radius:20px; box-shadow:5px 5px 20px 1px #888888;">
+    <div class="panel panel-primary">
+      <div class="panel-heading ">
+        <span class="badge badge-warning p-2 mb-2">Mã đề: HTML0125</span>
+        <h3 class="panel-title bg-info text-white p-3 display-5 d-flex align-center">
+          <span class="badge badge-secondary mr-2 align-self-baseline">Câu {{index+1}}</span>
+          <span>{{currentQuestion.Text}}</span>
+        </h3>
       </div>
-      <div class="col-md-1 column">
+      <div class="panel-body my-2">
+        <p></p>
+        <div class="radio" *ngFor='let ans of currentQuestion.Answers'>
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" [value]="ans.Id" [(ngModel)]="userAns" (change)="onItemChange($event.target.value)">
+            <span style="font-size:28px"
+              class="px-2 my-5" > {{ans.Text}} 
+            </span>
+          </label>
+        </div>
+
+      </div>
+      <div class="panel-footer">
+        <!-- <a class="btn btn-light" role="button" (click)="prev()">Prev</a> -->
+        <button class="btn btn-primary" 
+        (click)="nextOrViewResults()" 
+        role="button"
+         >Next</button>
+        <!-- <a href="#" class="btn btn-default disabled" role="button">Avanti</a> -->
       </div>
     </div>
+
+
+    <div class="col-md-1 column">
+    </div>
   </div>
+</div>
+<app-result *ngIf="showResult" [answers]="answers" [results]="results" [correctAns] = "correctAns" [totalQuestion] = "index"></app-result>

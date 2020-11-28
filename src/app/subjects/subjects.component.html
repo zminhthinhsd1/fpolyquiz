@@ -1,7 +1,10 @@
-<h1>Subjects</h1>
-<ul >
-    <li *ngFor='let s of subjects'>
-        <a href="subjects/{{s.Id}}">{{s.Name}}</a>
+<h1 class="text-center my-2">Subjects</h1>
+<h6 class=" text-center mb-3">Những môn học bạn phải làm để pass tốt nghiệp</h6>
+
+
+<ul class="list-group list-group-flush w-50 text-center " style="list-style-type: none; margin:0 auto">
+    <li *ngFor='let s of subjects' class="list-group-item  border-warning border-bottom bg-info mb-1" style="border-left:20px solid red; border-radius: 10px ; ">
+        <span class="badge badge-secondary mr-2 align-self-baseline">Mã {{s.Id}}</span>
+        <a href="subjects/{{s.Id}}" class="text-white ">{{s.Name}}</a>
     </li>
 </ul>
-  
